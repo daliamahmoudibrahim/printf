@@ -31,6 +31,15 @@ int _printf(const char *format, ...)
 				case '%':
 					count += print_char('%');
 					break;
+				case 'd' ||'i' :
+					count += print_int(va_arg(list_args, int));
+					break;
+
+				case 'b' : 
+					print_binary (va_arg(list_args, int));
+					break;
+
+	
 			}
 		}
 		else
@@ -72,4 +81,52 @@ int print_string(char *s)
 	return (string);
 }
 
+/**
+ * print_int- print number
+ * @number: the number
+ * Return: the number of words
+ */
+print_int (int number){ 
 
+	printf("%d", number);
+		
+	if (number == 0){
+			count++;
+	else if (number < 0)
+			count++;
+	while (number != 0){
+			number /= 10;
+			count++;
+	    	}
+	}
+	return (count);
+}
+
+
+/**
+ * print_binary- print binary
+ * @number: the number
+ * Return: void
+ */
+void print_binary(int number){
+
+	int x, y;
+	int arr[33];
+
+	x=0;
+	while (number > 0)
+	{
+		arr[x] = (number % 2);
+		number /= 2;
+		x++;
+	}
+	y = x - 1;
+
+	while (y >= 0){	
+		printf("%d", arr[y]);
+		y--;
+	}	
+
+
+
+}	
