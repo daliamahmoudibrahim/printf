@@ -10,6 +10,7 @@
 
 int _printf(const char *format, ...)
 {
+	int q;
 	int count = 0;
 	va_list list_args;
 
@@ -32,11 +33,13 @@ int _printf(const char *format, ...)
 					count += print_char('%');
 					break;
 				case 'd' ||'i' :
-					count += print_int(va_arg(list_args, int));
+					q = va_arg(list_args, int);
+					count += print_int(q);
 					break;
 
 				case 'b' : 
-					print_binary (va_arg(list_args, int));
+					q = va_arg(list_args, int);
+					print_binary (q);
 					break;
 
 	
@@ -86,19 +89,21 @@ int print_string(char *s)
  * @number: the number
  * Return: the number of words
  */
-print_int (int number){ 
+int print_int (int number){ 
 
+	int count = 0;
 	printf("%d", number);
 		
-	if (number == 0){
-			count++;
+	if (number == 0)
+
+		count++;
 	else if (number < 0)
-			count++;
+		count++;
 	while (number != 0){
-			number /= 10;
-			count++;
+		number /= 10;
+		count++;
 	    	}
-	}
+	
 	return (count);
 }
 
