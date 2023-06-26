@@ -32,15 +32,19 @@ int _printf(const char *format, ...)
 				case '%':
 					count += print_char('%');
 					break;
-				case 'd' ||'i' :
+				case 'd' :
 					q = va_arg(list_args, int);
 					count += print_int(q);
 					break;
-
+				case 'i' :
+					q = va_arg(list_args, int);
+					count += print_int(q);
+					break;
 				case 'b' : 
 					q = va_arg(list_args, int);
 					print_binary (q);
 					break;
+
 
 	
 			}
@@ -95,7 +99,6 @@ int print_int (int number){
 	printf("%d", number);
 		
 	if (number == 0)
-
 		count++;
 	else if (number < 0)
 		count++;
